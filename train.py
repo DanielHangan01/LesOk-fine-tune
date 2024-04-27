@@ -60,6 +60,8 @@ total_loss = []
 iou_metrics_train = []
 iou_metrics_val = []
 
+rank = config_file["SAM"]["RANK"]
+
 for epoch in range(num_epochs):
     epoch_losses = []
 
@@ -104,6 +106,7 @@ for epoch in range(num_epochs):
     print(f'Mean loss training: {mean(epoch_losses)}')
     print(f'IoU Train: {mean(iou_metrics_train)}')
     print(f'IoU Val: {mean(iou_metrics_val)}')
+    sam_lora.save_lora_parameters(f"lora_rank{rank}.safetensors")
 
 # Save the parameters of the model in safetensors format
 rank = config_file["SAM"]["RANK"]
