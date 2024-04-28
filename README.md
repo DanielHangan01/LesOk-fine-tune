@@ -6,10 +6,6 @@ One such critical application is detecting forest patterns in satellite photogra
 ## Data Preprocessing
 We collected more than 2000 images of various satellite observations; There were pictures from areas with a high concentration of greenery (like Datasets from Amazon & Atlantic Forests) as well as datasets with an extensive variety of landscapes (DeepGlobe DataSet that contains images and masks that represent 7 types of terrain, such as water, agriculture, urban, forest, etc.). After preproccesing the data, we divided all sample-images with available masks into training and validation datatsets in 9:1 proportion.  
 
-
-The Amazon and Atlantic Forest image datasets 
-
-
 Data Preprocessing makes up a significant portion of the code in this repository. That is due to the variety of formats and types of input databases. In the next part of this subsection we briefly explain what functons do the implemened algorithms serve. 
 
 folder data_preprocessing_package:
