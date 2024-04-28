@@ -34,49 +34,9 @@ The last check; takes folders of images or masks in png format as input. Iterate
 
 
 ## Setup
-The project use python poetry.
-
-```bash
-pip install poetry
-```
-
-If you are running this on a headless server, run this first so that poetry doesn't hang:
-```bash
-export PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring
-```
-
-To install the dependencies use:
-```bash
-poetry config virtualenvs.in-project false
-```
-
-```bash
-poetry install --all-extras
-```
-
-Some dependencies are not loaded with the poetry install, so I added them manually.
-```bash
-poetry run pip install --upgrade torch torchvision gradio safetensors opencv-python monai
-```
-
-Download the image encoder checkpoint (`only support vit-b`)
-```bash
-wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
-```
-
-## Notes on the Data
-- The script expects all of the images to have the same amount of channels (all RGB, all Grayscale, etc) and no alpha channel (transparency). This will be proved via data-preprocessing folders
-
-## Train
-Configure the model and paths in the configuration file:
-```bash
-config.yaml
-```
-
-To run the training, use:
-```bash
-poetry run python train.py
-```
+The project is running in Google Colab. Copy run.ipynb to your Google Drive and open it with Google Colab. 
+The project is structured in a way that all the necessary files are downloaded automatically. 
+You need to download following datasets manually and store it in the train, validation and test folders.
 
 # References
 
