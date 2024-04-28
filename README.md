@@ -4,7 +4,7 @@ Introducing SAM: The Segment Anything Model (SAM) by Meta marks a pivotal moment
 One such critical application is detecting forest patterns in satellite photographs. By harnessing SAM's segmentation capabilities and fine-tuning it for this task, we aim to contribute significantly to forest conservation efforts. The ability to accurately identify forest areas helps prevent deforestation by enabling timely intervention and monitoring. Moreover, it aids in assessing forest health, biodiversity conservation, and mitigating climate change impacts. Our project underscores the urgency and importance of leveraging cutting-edge technology like SAM to safeguard our planet's vital ecosystems and ensure sustainable development.
 
 ## Data Preprocessing
-We collected more than 2000 images of various satellite observations; There were pictures from areas with a high concentration of greenery (like Datasets from Amazon & Atlantic Forests) as well as datasets with an extensive variety of landscapes (DeepGlobe DataSet that contains images and masks that represent 7 types of terrain, such as water, agriculture, urban, forest, etc.). After preproccesing the data, we divided all sample-images with available masks into training and validation datatsets in 9:1 proportion.   
+We collected more than 2000 images of various satellite observations; There were pictures from areas with a high concentration of greenery (like Datasets from Amazon & Atlantic Forests) as well as datasets with an extensive variety of landscapes (DeepGlobe DataSet that contains images and masks that represent 7 types of terrain, such as water, agriculture, urban, forest, etc.). After preproccesing the data, we divided all sample-images with available masks into training and validation datatsets in 9:1 proportion.  
 
 
 
@@ -12,15 +12,20 @@ Data Preprocessing makes up a significant portion of the code in this repository
 
 The Amazon and Atlantic Forest image datasets 
 
-folder data_preprocessing_m:
+folder data_preprocessing_package:
 1. divide_jpg_and_png.py
 Was used for dividing given images and their respectful masks in the DeepGlobe DataSet (reference 3).
 2. convert_jpg_folder_to_png.py
 Contains a function that convertes all jpg-images from given folder into png format and adds them to another referenced folder. Was used when converting given images in the DeepGlobe DataSet (reference 3).
-3. convert_tif_to_png.py
+3. compress.py
 
-4. comparing_names_and_size.py
-5. RGBA_package_check.py
+4. convert_tif_to_png.py
+After unzipping (unraring :)) the rar archives, all of the masks and images were in tif/tiff format and should have been converted to png as it is our chosen data format. This method helps us convert the pictures even though they were given in an unsupported by windows or python form. The tif picture´s pixels are being rescaled to [0,255] intervals so the images can be processed and transformed into pngs. 
+5. comparing_names_and_size.py
+This method is used for filtering out any training/validation purposed images that do not have an according mask or if the existing corresponding mask has different dimension compared to the photograph. If that is the case, the images(photographs) are being deleted from the handed folder. This method can also be used the other way round (filtering out masks that have no corresponding image). The first input folder should contain all images and the second should consist of the masks of the first folder´s pics. It is also important that the image from first folder and "its" mask from the second folder should be named identically, we already introduced a method for hat subtask. This method is also used after necessary resizing of the data so it acts as the forelast step, so to say it is our additional check for the correctness of the previously done procedures.
+6. RGBA_package_check.py
+The last check; takes folders of images or masks in png format as input. Iterates through the folders and proves whether each picture from the folder satisfies the three following characteristics. Firstly, whether the R, G and B parameters of every pixel take values between 0 and 255 (both inclusively) - that ensures that each picture is in RGB format. Secondly, whether the alpha channel parameter is equal to 255 - guaranteeing that every pic is non-transparent. Lastly, this binnary criterion should be true for the masks folders only - Whether all three parameters (R, G and B) for every picture in the package are either all equal to 0 or all equal to 255 - ensuring all of the masks are binary and contain pure black and white only.
+
 
 ## Setup
 The project use python poetry.
