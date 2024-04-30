@@ -43,3 +43,4 @@ You need to download following datasets manually and store it in the train, vali
 1. https://zenodo.org/records/3233081#.Y6LPLOzP1hE - 
 2. https://zenodo.org/records/4498086#.Y6LPLuzP1hE
 3. https://www.kaggle.com/datasets/balraj98/deepglobe-land-cover-classification-dataset
+4. https://devpost.com/software/forestinpeace
